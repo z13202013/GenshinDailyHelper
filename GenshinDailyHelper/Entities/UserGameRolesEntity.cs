@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace GenshinDailyCheckIn.Entities
+namespace GenshinDailyHelper.Entities
 {
     /// <summary>
     /// 游戏角色信息

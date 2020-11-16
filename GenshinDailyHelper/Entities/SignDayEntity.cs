@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GenshinDailyCheckIn.Entities
+namespace GenshinDailyHelper.Entities
 {
     /// <summary>
     /// 签到信息

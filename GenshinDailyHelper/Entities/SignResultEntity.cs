@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
-namespace GenshinDailyCheckIn.Entities
+namespace GenshinDailyHelper.Entities
 {
     /// <summary>
     /// 最后签到结果

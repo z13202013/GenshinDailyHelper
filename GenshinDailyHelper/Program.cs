@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using GenshinDailyCheckIn.Client;
-using GenshinDailyCheckIn.Constant;
-using GenshinDailyCheckIn.Entities;
-using GenshinDailyCheckIn.Exception;
+﻿using System;
 using System.Threading.Tasks;
+using GenshinDailyHelper.Client;
+using GenshinDailyHelper.Constant;
+using GenshinDailyHelper.Entities;
+using GenshinDailyHelper.Exception;
 
-namespace GenshinDailyCheckIn
+namespace GenshinDailyHelper
 {
     class Program
     {
@@ -18,7 +18,7 @@ namespace GenshinDailyCheckIn
                 if (args.Length <= 0)
                 {
                     WriteLineUtil.WriteLineLog("获取参数不对");
-                    System.Console.ReadLine();
+                    Console.ReadLine();
                     return;
                 }
 
@@ -72,16 +72,20 @@ namespace GenshinDailyCheckIn
 
                     WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());
                 }
+
+               
             }
             catch (GenShinException e)
             {
-                WriteLineUtil.WriteLineLog(e.Message);
+                WriteLineUtil.WriteLineLog($"请求接口时出现异常{e.Message}");
+                throw;
             }
             catch (System.Exception e)
             {
-                WriteLineUtil.WriteLineLog(e);
+                WriteLineUtil.WriteLineLog($"出现意料以外的异常{e}");
+                throw;
             }
-
+            //抛出异常主动构建失败
             WriteLineUtil.WriteLineLog("签到结束");
             System.Console.ReadLine();
         }

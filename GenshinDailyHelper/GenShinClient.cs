@@ -1,10 +1,10 @@
-﻿using GenshinDailyCheckIn.Client;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using GenshinDailyHelper.Client;
+using Newtonsoft.Json;
 
-namespace GenshinDailyCheckIn
+namespace GenshinDailyHelper
 {
     public class GenShinClient
     {

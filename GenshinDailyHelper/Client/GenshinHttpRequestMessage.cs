@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
-using GenshinDailyCheckIn.Constant;
+using GenshinDailyHelper.Constant;
 
-namespace GenshinDailyCheckIn.Client
+namespace GenshinDailyHelper.Client
 {
     /// <summary>
     /// 原神请求Request

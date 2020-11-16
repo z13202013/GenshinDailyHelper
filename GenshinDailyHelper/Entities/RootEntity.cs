@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using GenshinDailyCheckIn.Exception;
+using GenshinDailyHelper.Exception;
 using Newtonsoft.Json;
 
-namespace GenshinDailyCheckIn.Entities
+namespace GenshinDailyHelper.Entities
 {
     /// <summary>
     /// 返回头部信息

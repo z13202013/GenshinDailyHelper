@@ -1,4 +1,4 @@
-﻿namespace GenshinDailyCheckIn.Constant
+﻿namespace GenshinDailyHelper.Constant
 {
     /// <summary>
     /// 常量设定

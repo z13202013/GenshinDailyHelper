@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GenshinDailyCheckIn
+namespace GenshinDailyHelper
 {
     /// <summary>
     /// 输出格式化

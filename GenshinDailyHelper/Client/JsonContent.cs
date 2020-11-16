@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Newtonsoft.Json;
 
-namespace GenshinDailyCheckIn.Client
+namespace GenshinDailyHelper.Client
 {
     /// <summary>
     /// 创建Json实体到Post的JsonBody
