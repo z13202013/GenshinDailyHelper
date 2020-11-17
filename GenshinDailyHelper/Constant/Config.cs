@@ -38,7 +38,7 @@
         /// <summary>
         /// 开始签到
         /// </summary>
-        public static string PostSignInfo = "event/bbs_sign_reward/sign?";
+        public static string PostSignInfo = "event/bbs_sign_reward/sign";
 
         #endregion
     }
