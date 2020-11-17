@@ -9,7 +9,7 @@ namespace GenshinDailyHelper
     {
         public static void WriteLineLog(object? e)
         {
-            var time = DateTime.Now.ToString("hh:mm:ss");
+            var time = DateTime.Now.ToString("HH:mm:ss");
 
             Console.WriteLine($"[{time}]:{e}");
         }
