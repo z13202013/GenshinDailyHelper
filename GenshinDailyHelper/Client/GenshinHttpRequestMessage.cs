@@ -28,5 +28,15 @@ namespace GenshinDailyHelper.Client
             Headers.Add("Cookie",cookie);
             Headers.Add("x-rpc-device_id", Guid.NewGuid().ToString("D"));
         }
+
+        /// <summary>
+        /// 有关额外的请求Header
+        /// </summary>
+        public void GenshinExtraHeader()
+        {
+            Headers.Add("x-rpc-client_type", Config.ClientType);
+            Headers.Add("x-rpc-app_version", Config.AppVersion);
+            Headers.Add("DS", Config.GetDs());
+        }
     }
 }

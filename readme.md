@@ -1,6 +1,6 @@
 <h1 align="center">
 
-GenshinDailyHelper[暂时不可用，以后再来吧]
+GenshinDailyHelper
 
 </h1>
 
@@ -48,6 +48,9 @@ GenshinDailyHelper[暂时不可用，以后再来吧]
 
 ### 其他
 - 点击 ```Run workflow```可以手动触发Action
-- 自动签到时间是 00:10
+- 自动签到时间是 6点
 - 若Cookie失效在第三步替换自己的Cookie。一般情况下Cookie能保持有效期很久。
 - 多个账号以```#```隔开，如Cookie1#Cookie2#Cookie3
+
+## 传送门
+- https://github.com/y1ndan/genshin-impact-helper 以后一般会根据这个大佬的项目来跟进

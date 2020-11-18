@@ -1,13 +1,38 @@
-﻿namespace GenshinDailyHelper.Constant
+﻿using GenshinDailyHelper.Util;
+
+namespace GenshinDailyHelper.Constant
 {
     /// <summary>
     /// 常量设定
     /// </summary>
     public static class Config
     {
-        public static string Ua = "Mozilla/5.0 (Linux; Android 5.1.1; f103 Build/LYZ28N; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Safari/537.36 miHoYoBBS/2.2.0";
+        public static string Ua =>
+            $"Mozilla/5.0 (Linux; Android 5.1.1; f103 Build/LYZ28N; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Safari/537.36 miHoYoBBS/{AppVersion}";
 
-        public static string AcceptEncoding = "gzip, deflate, br";
+        public static string AcceptEncoding => "gzip, deflate";
+
+        public static string AppVersion => "2.1.0";
+
+        public static string ClientType => "5";
+
+        /// <summary>
+        /// 获取头部DS
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDs()
+        {
+            var time = SafeUtil.GetCurrentTimestamp();
+            var stringRom = SafeUtil.GetRandString(6);
+            var stringAdd = $"salt={Salt}&t={time}&r={stringRom}";
+            var stringMd5 = SafeUtil.UserMd5(stringAdd);
+            return $"{time},{stringRom},{stringMd5}";
+        } 
+
+        /// <summary>
+        /// 盐(AppVersion的md5得到)
+        /// </summary>
+        public static string Salt => SafeUtil.UserMd5(AppVersion);
 
         #region Referer
 
@@ -28,7 +53,7 @@
         /// <summary>
         /// 获取账号信息
         /// </summary>
-        public static string GetUserGameRolesByCookie = "binding/api/getUserGameRolesByCookie??";
+        public static string GetUserGameRolesByCookie = "binding/api/getUserGameRolesByCookie?";
 
         /// <summary>
         /// 获取签到信息

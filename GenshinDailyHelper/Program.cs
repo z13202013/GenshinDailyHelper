@@ -54,11 +54,6 @@ namespace GenshinDailyHelper
 
                     WriteLineUtil.WriteLineLog(signDayResult.Data.ToString());
 
-                    if (signDayResult.Data.IsSign)
-                    {
-                        continue;
-                    }
-
                     var data = new
                     {
                         act_id = Config.ActId,
@@ -66,8 +61,10 @@ namespace GenshinDailyHelper
                         uid = roles.GameUid
                     };
 
+                    var signClient = new GenShinClient(cookie,true);
+
                     var result =
-                        await client.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
+                        await signClient.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
                             jsonContent: new JsonContent(data));
 
                     WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());

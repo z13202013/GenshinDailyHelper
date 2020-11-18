@@ -17,7 +17,12 @@ namespace GenshinDailyHelper
 
         private HttpClient Client { get; }
 
-        public GenShinClient(string cookie)
+        /// <summary>
+        /// 是否要额外添加Header字段
+        /// </summary>
+        private bool Extra { get; }
+
+        public GenShinClient(string cookie,bool extra = false)
         {
             if (string.IsNullOrEmpty(cookie))
             {
@@ -25,6 +30,7 @@ namespace GenshinDailyHelper
             }
 
             Cookie = cookie;
+            Extra = extra;
             Client = new HttpClient(new HttpClientHandler{UseCookies = false});
         }
 
@@ -65,6 +71,8 @@ namespace GenshinDailyHelper
         {
             using var requestMessage = BuildHttpRequestMessage(uri, method, content);
 
+
+
             var response = await Client.SendAsync(requestMessage);
 
             var rawResult = await response.Content.ReadAsStringAsync();
@@ -77,6 +85,11 @@ namespace GenshinDailyHelper
         private HttpRequestMessage BuildHttpRequestMessage(Uri uri, HttpMethod method, HttpContent content = null)
         {
             var requestMessage = new GenshinHttpRequestMessage(method, uri,Cookie);
+
+            if (Extra)
+            {
+                requestMessage.GenshinExtraHeader();
+            }
 
             if (content != null)
             {

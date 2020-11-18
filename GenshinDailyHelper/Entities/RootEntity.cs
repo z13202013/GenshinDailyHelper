@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using GenshinDailyHelper.Exception;
 using Newtonsoft.Json;
 
@@ -32,11 +33,9 @@ namespace GenshinDailyHelper.Entities
         /// 判断返回码并延迟
         /// </summary>
         /// <returns></returns>
-        public virtual string CheckOutCodeAndSleep()
+        public string CheckOutCodeAndSleep()
         {
-            Random ran = new Random();
-            int randKey = ran.Next(500, 2000);
-            Thread.Sleep(randKey);
+            Task.Delay(3 * 1000).Wait();
 
             switch (Retcode)
             {
