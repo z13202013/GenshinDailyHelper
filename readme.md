@@ -15,7 +15,7 @@ GenshinDailyHelper
 运行结果
 ![运行图示](https://cdn.jsdelivr.net/gh/yinghualuowu/SakuraWallpaper@74c46f44/cnblog/head/genshin/buildsuccess.png)
 
-**该项目支持多号签到，但各位旅行者爱惜羊角包，不要滥用**
+**该项目支持多号签到/多角色签到，但各位旅行者爱惜羊角包，不要滥用**
 
 ## 使用方法
 签到是通过接口模拟请求达成目的，因此需要cookie信息来作为第一步

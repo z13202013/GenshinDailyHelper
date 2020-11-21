@@ -42,7 +42,7 @@ namespace GenshinDailyHelper.Entities
                 case 0:
                     return "执行成功";
                 case -5003:
-                    return "已经签到";
+                    return $"{Message}";
                 default:
                     throw new GenShinException($"请求异常{Message}");
             }

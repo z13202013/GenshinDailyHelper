@@ -14,7 +14,7 @@ namespace GenshinDailyHelper.Entities
     public class UserGameRolesData
     {
         [JsonProperty("list")]
-        public List<UserGameRolesListItem> List { get; set; }
+        public List<UserGameRolesListItem> List { get; set; } = new List<UserGameRolesListItem>();
     }
 
     public class UserGameRolesListItem

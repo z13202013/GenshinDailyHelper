@@ -42,35 +42,40 @@ namespace GenshinDailyHelper
                     //检查第一步获取账号信息
                     rolesResult.CheckOutCodeAndSleep();
 
-                    WriteLineUtil.WriteLineLog(rolesResult.Data.List[0].ToString());
+                    int accountBindCount = rolesResult.Data.List.Count;
 
-                    var roles = rolesResult.Data.List[0];
+                    WriteLineUtil.WriteLineLog($"账号{accountNum}绑定了{accountBindCount}角色");
 
-                    var signDayResult = await client.GetExecuteRequest<SignDayEntity>(Config.GetBbsSignRewardInfo,
-                        $"act_id={Config.ActId}&region={roles.Region}&uid={roles.GameUid}");
-
-                    //检查第二步是否签到
-                    signDayResult.CheckOutCodeAndSleep();
-
-                    WriteLineUtil.WriteLineLog(signDayResult.Data.ToString());
-
-                    var data = new
+                    for (int i = 0; i < accountBindCount; i++)
                     {
-                        act_id = Config.ActId,
-                        region = roles.Region,
-                        uid = roles.GameUid
-                    };
+                        WriteLineUtil.WriteLineLog(rolesResult.Data.List[i].ToString());
 
-                    var signClient = new GenShinClient(cookie,true);
+                        var roles = rolesResult.Data.List[i];
 
-                    var result =
-                        await signClient.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
-                            jsonContent: new JsonContent(data));
+                        var signDayResult = await client.GetExecuteRequest<SignDayEntity>(Config.GetBbsSignRewardInfo,
+                            $"act_id={Config.ActId}&region={roles.Region}&uid={roles.GameUid}");
 
-                    WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());
+                        //检查第二步是否签到
+                        signDayResult.CheckOutCodeAndSleep();
+
+                        WriteLineUtil.WriteLineLog(signDayResult.Data.ToString());
+
+                        var data = new
+                        {
+                            act_id = Config.ActId,
+                            region = roles.Region,
+                            uid = roles.GameUid
+                        };
+
+                        var signClient = new GenShinClient(cookie, true);
+
+                        var result =
+                            await signClient.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
+                                jsonContent: new JsonContent(data));
+
+                        WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());
+                    }
                 }
-
-               
             }
             catch (GenShinException e)
             {
