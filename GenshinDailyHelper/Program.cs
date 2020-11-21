@@ -13,14 +13,14 @@ namespace GenshinDailyHelper
         {
             WriteLineUtil.WriteLineLog("开始签到");
 
+            if (args.Length <= 0)
+            {
+                throw new InvalidOperationException("获取参数不对");
+            }
+
             try
             {
-                if (args.Length <= 0)
-                {
-                    WriteLineUtil.WriteLineLog("获取参数不对");
-                    Console.ReadLine();
-                    return;
-                }
+                
 
                 var cookieString = string.Join(' ',args);
 
@@ -91,7 +91,6 @@ namespace GenshinDailyHelper
             }
             //抛出异常主动构建失败
             WriteLineUtil.WriteLineLog("签到结束");
-            System.Console.ReadLine();
         }
     }
 }
