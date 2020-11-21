@@ -26,11 +26,13 @@ namespace GenshinDailyHelper
 
                 var cookies = cookieString.Split("#");
 
-                int accountNum = 1;
+                int accountNum = 0;
 
                 foreach (var cookie in cookies)
                 {
-                    WriteLineUtil.WriteLineLog($"开始签到 账号{accountNum++}");
+                    accountNum++;
+
+                    WriteLineUtil.WriteLineLog($"开始签到 账号{accountNum}");
 
                     var client = new GenShinClient(
                         cookie);
@@ -44,7 +46,7 @@ namespace GenshinDailyHelper
 
                     int accountBindCount = rolesResult.Data.List.Count;
 
-                    WriteLineUtil.WriteLineLog($"账号{accountNum}绑定了{accountBindCount}角色");
+                    WriteLineUtil.WriteLineLog($"账号{accountNum}绑定了{accountBindCount}个角色");
 
                     for (int i = 0; i < accountBindCount; i++)
                     {
