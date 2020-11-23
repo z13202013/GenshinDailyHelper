@@ -11,9 +11,9 @@ namespace GenshinDailyHelper
         /// <summary>
         /// 米游社登录Cookie
         /// </summary>
-        public string Cookie { get; }
+        private string Cookie { get; }
 
-        protected string OpenApi => "https://api-takumi.mihoyo.com/";
+        private static string OpenApi => "https://api-takumi.mihoyo.com/";
 
         private HttpClient Client { get; }
 

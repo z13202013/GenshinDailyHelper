@@ -37,15 +37,12 @@ namespace GenshinDailyHelper.Entities
         {
             Task.Delay(3 * 1000).Wait();
 
-            switch (Retcode)
+            return Retcode switch
             {
-                case 0:
-                    return "执行成功";
-                case -5003:
-                    return $"{Message}";
-                default:
-                    throw new GenShinException($"请求异常{Message}");
-            }
+                0 => "执行成功",
+                -5003 => $"{Message}",
+                _ => throw new GenShinException($"请求异常{Message}")
+            };
         }
 
         public override string ToString()

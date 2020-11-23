@@ -39,9 +39,9 @@ namespace GenshinDailyHelper.Constant
         /// <summary>
         /// 活动ID，可能有变动
         /// </summary>
-        public static string ActId = "e202009291139501";
+        public static string ActId => "e202009291139501";
 
-        private static string BaseUrl = "https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html";
+        private static string BaseUrl => "https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html";
 
         public static string RefererUrl =>
             BaseUrl + $"?bbs_auth_required=true&act_id={ActId}&utm_source=bbs&utm_medium=mys&utm_campaign=icon";
@@ -53,17 +53,17 @@ namespace GenshinDailyHelper.Constant
         /// <summary>
         /// 获取账号信息
         /// </summary>
-        public static string GetUserGameRolesByCookie = "binding/api/getUserGameRolesByCookie?";
+        public static string GetUserGameRolesByCookie => "binding/api/getUserGameRolesByCookie?";
 
         /// <summary>
         /// 获取签到信息
         /// </summary>
-        public static string GetBbsSignRewardInfo = "event/bbs_sign_reward/info?";
+        public static string GetBbsSignRewardInfo => "event/bbs_sign_reward/info?";
 
         /// <summary>
         /// 开始签到
         /// </summary>
-        public static string PostSignInfo = "event/bbs_sign_reward/sign";
+        public static string PostSignInfo => "event/bbs_sign_reward/sign";
 
         #endregion
     }
