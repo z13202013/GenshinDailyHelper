@@ -12,7 +12,7 @@ namespace GenshinDailyHelper.Constant
 
         public static string AcceptEncoding => "gzip, deflate";
 
-        public static string AppVersion => "2.1.0";
+        public static string AppVersion => "2.3.0";
 
         public static string ClientType => "5";
 
@@ -23,7 +23,7 @@ namespace GenshinDailyHelper.Constant
         public static string GetDs()
         {
             var time = SafeUtil.GetCurrentTimestamp();
-            var stringRom = SafeUtil.GetRandString(6);
+            var stringRom = SafeUtil.GetRandString(6).ToLower();
             var stringAdd = $"salt={Salt}&t={time}&r={stringRom}";
             var stringMd5 = SafeUtil.UserMd5(stringAdd);
             return $"{time},{stringRom},{stringMd5}";
@@ -32,7 +32,7 @@ namespace GenshinDailyHelper.Constant
         /// <summary>
         /// 盐(AppVersion的md5得到)
         /// </summary>
-        public static string Salt => SafeUtil.UserMd5(AppVersion);
+        public static string Salt => "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
 
         #region Referer
 
