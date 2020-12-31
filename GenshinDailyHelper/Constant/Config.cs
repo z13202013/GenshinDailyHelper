@@ -23,7 +23,7 @@ namespace GenshinDailyHelper.Constant
         public static string GetDs()
         {
             var time = SafeUtil.GetCurrentTimestamp();
-            var stringRom = SafeUtil.GetRandString(6).ToLower();;
+            var stringRom = SafeUtil.GetRandString(6).ToLower();
             var stringAdd = $"salt={Salt}&t={time}&r={stringRom}";
             var stringMd5 = SafeUtil.UserMd5(stringAdd);
             return $"{time},{stringRom},{stringMd5}";
