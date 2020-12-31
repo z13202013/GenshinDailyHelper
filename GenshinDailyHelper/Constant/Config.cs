@@ -23,7 +23,7 @@ namespace GenshinDailyHelper.Constant
         public static string GetDs()
         {
             var time = SafeUtil.GetCurrentTimestamp();
-            var stringRom = SafeUtil.GetRandString(6);
+            var stringRom = SafeUtil.GetRandString(6).ToLower();;
             var stringAdd = $"salt={Salt}&t={time}&r={stringRom}";
             var stringMd5 = SafeUtil.UserMd5(stringAdd);
             return $"{time},{stringRom},{stringMd5}";
@@ -32,7 +32,7 @@ namespace GenshinDailyHelper.Constant
         /// <summary>
         /// 盐(AppVersion的md5得到)
         /// </summary>
-        public static string Salt => SafeUtil.UserMd5(AppVersion);
+        public static string Salt => "cx2y9z9a29tfqvr1qsq6c7yz99b5jsqt";
 
         #region Referer
 
