@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using GenshinDailyHelper.Client;
 using GenshinDailyHelper.Constant;
@@ -11,7 +11,7 @@ namespace GenshinDailyHelper
     {
         static async Task Main(string[] args)
         {
-            WriteLineUtil.WriteLineLog("开始签到");
+            WriteLineUtil.WriteLineLog("开始运行!");
 
             if (args.Length <= 0)
             {
@@ -20,19 +20,24 @@ namespace GenshinDailyHelper
 
             try
             {
+                string pushPlusToken = args[0].Substring(0,args[0].Length - 1);
+
+                var tempString = string.Join(' ',args);
+
+                var tempArray = tempString.Split("#");
                 
-
-                var cookieString = string.Join(' ',args);
-
-                var cookies = cookieString.Split("#");
-
+                string[] cookies = new string[tempArray.Length - 1];
+                for(var j = 1; j <= cookies.Length; j++){
+                    cookies[j - 1] = tempArray[j];
+                }
+                
                 int accountNum = 0;
-
-                foreach (var cookie in cookies)
+                
+                foreach(var cookie in cookies)
                 {
                     accountNum++;
 
-                    WriteLineUtil.WriteLineLog($"开始签到 账号{accountNum}");
+                    WriteLineUtil.WriteLineLog($"账号{accountNum},开始签到...");
 
                     var client = new GenShinClient(
                         cookie);
@@ -46,7 +51,7 @@ namespace GenshinDailyHelper
 
                     int accountBindCount = rolesResult.Data.List.Count;
 
-                    WriteLineUtil.WriteLineLog($"账号{accountNum}绑定了{accountBindCount}个角色");
+                    WriteLineUtil.WriteLineLog($"第{accountNum}账号,绑定了{accountBindCount}个角色");
 
                     for (int i = 0; i < accountBindCount; i++)
                     {
@@ -58,24 +63,43 @@ namespace GenshinDailyHelper
                             $"act_id={Config.ActId}&region={roles.Region}&uid={roles.GameUid}");
 
                         //检查第二步是否签到
-                        signDayResult.CheckOutCodeAndSleep();
-
+                        var signCode = signDayResult.CheckOutCodeAndSleep();
+                        
                         WriteLineUtil.WriteLineLog(signDayResult.Data.ToString());
 
-                        var data = new
-                        {
-                            act_id = Config.ActId,
-                            region = roles.Region,
-                            uid = roles.GameUid
-                        };
+                        var awardsResult = await client.GetExecuteRequest<SignAwardsEntity>(Config.GetSignAwards, 
+                            $"act_id={Config.ActId}");
+                        
+//                          if(!signDayResult.Data.IsSign)
+//                          {
+                            var data = new
+                            {
+                                act_id = Config.ActId,
+                                region = roles.Region,
+                                uid = roles.GameUid
+                            };
 
-                        var signClient = new GenShinClient(cookie, true);
+                            var signClient = new GenShinClient(cookie, true);
 
-                        var result =
-                            await signClient.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
-                                jsonContent: new JsonContent(data));
+                            var result =
+                                await signClient.PostExecuteRequest<SignResultEntity>(Config.PostSignInfo,
+                                    jsonContent: new JsonContent(data));
 
-                        WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());
+                            WriteLineUtil.WriteLineLog(result.CheckOutCodeAndSleep());
+                            
+                            signDayResult = await client.GetExecuteRequest<SignDayEntity>(Config.GetBbsSignRewardInfo,
+                            $"act_id={Config.ActId}&region={roles.Region}&uid={roles.GameUid}");
+//                          }
+                                               
+                        var todayAwards = awardsResult.Data.Awards[signDayResult.Data.TotalSignDay - 1];
+                        
+                        WriteLineUtil.WriteLineLog($"{todayAwards}");
+                        
+                        var pushPlusClient = new GenShinClient(Config.GetPushPlusApi);
+                        var pushPlusResult = 
+                            await  pushPlusClient.GetPushPlusExecuteRequest<PushPlusEntity>(Config.GetPushPlusApi,
+                             pushPlusToken,Config.GetPushPlusTitle(awardsResult.Data.Month),
+                             $"{roles}{todayAwards}{signDayResult.Data}");
                     }
                 }
             }
