@@ -36,7 +36,7 @@ namespace GenshinDailyHelper.Entities
         public override string ToString()
         {
             var sign = IsSign ? "已签到" : "未签到";
-            return $"签到天数:{TotalSignDay},今日为:{Today},签到情况:{sign}";
+            return $"状态:{sign}\n累签:{TotalSignDay}\n日期:{Today}";
         }
     }
 }
