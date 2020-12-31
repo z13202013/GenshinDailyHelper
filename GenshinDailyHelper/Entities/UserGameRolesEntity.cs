@@ -62,7 +62,7 @@ namespace GenshinDailyHelper.Entities
 
         public override string ToString()
         {
-            return $"昵称:{Nickname},等级:{Level},区域:{RegionName}";
+            return $"昵称:{Nickname}\n等级:{Level}\n";
         }
     }
 }
