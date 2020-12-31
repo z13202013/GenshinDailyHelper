@@ -70,8 +70,8 @@ namespace GenshinDailyHelper
                         var awardsResult = await client.GetExecuteRequest<SignAwardsEntity>(Config.GetSignAwards, 
                             $"act_id={Config.ActId}");
                         
-//                          if(!signDayResult.Data.IsSign)
-//                          {
+                         if(!signDayResult.Data.IsSign)
+                         {
                             var data = new
                             {
                                 act_id = Config.ActId,
@@ -89,7 +89,7 @@ namespace GenshinDailyHelper
                             
                             signDayResult = await client.GetExecuteRequest<SignDayEntity>(Config.GetBbsSignRewardInfo,
                             $"act_id={Config.ActId}&region={roles.Region}&uid={roles.GameUid}");
-//                          }
+                         }
                                                
                         var todayAwards = awardsResult.Data.Awards[signDayResult.Data.TotalSignDay - 1];
                         
