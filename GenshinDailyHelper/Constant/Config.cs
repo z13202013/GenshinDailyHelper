@@ -12,7 +12,7 @@ namespace GenshinDailyHelper.Constant
 
         public static string AcceptEncoding => "gzip, deflate";
 
-        public static string AppVersion => "2.3.0";
+        public static string AppVersion => "2.2.1";
 
         public static string ClientType => "5";
 
@@ -32,7 +32,7 @@ namespace GenshinDailyHelper.Constant
         /// <summary>
         /// 盐(AppVersion的md5得到)
         /// </summary>
-        public static string Salt => "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
+        public static string Salt => "cx2y9z9a29tfqvr1qsq6c7yz99b5jsqt";
 
         #region Referer
 
