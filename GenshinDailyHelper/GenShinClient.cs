@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using GenshinDailyHelper.Client;
@@ -46,6 +46,16 @@ namespace GenshinDailyHelper
             return await ExecuteRequest<T>(req, HttpMethod.Get);
         }
 
+                
+        /// <summary>
+        /// 对Push+做出Get请求
+        /// </summary>
+        public async Task<T> GetPushPlusExecuteRequest<T>(string pushPlusApi, string token,string title,string content)
+        {
+            var req = new Uri($"{pushPlusApi}?token={token}&title={title}&content={content}");
+            return  await ExecuteRequest<T>(req, HttpMethod.Get);
+        }
+        
         /// <summary>
         /// 对外做出Post请求
         /// </summary>
@@ -70,15 +80,13 @@ namespace GenshinDailyHelper
         private async Task<T> ExecuteRequest<T>(Uri uri, HttpMethod method, HttpContent content = null)
         {
             using var requestMessage = BuildHttpRequestMessage(uri, method, content);
-
-
-
+            
             var response = await Client.SendAsync(requestMessage);
 
             var rawResult = await response.Content.ReadAsStringAsync();
-
+            
             var result = JsonConvert.DeserializeObject<T>(rawResult);
-
+            
             return result;
         }
 
