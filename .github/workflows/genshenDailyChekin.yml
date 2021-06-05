@@ -15,8 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 查看
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
       
     # 设置服务器时区为东八区 
     - name: 设置时区
