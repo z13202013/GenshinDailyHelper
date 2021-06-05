@@ -1,4 +1,4 @@
-name: genshenDailyChekin
+name: 原神签到
 
 on:
   push:
@@ -15,18 +15,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: 查看
+      uses: actions/checkout@v2
       
     # 设置服务器时区为东八区 
-    - name: Set time zone
+    - name: 设置时区
       run: sudo timedatectl set-timezone 'Asia/Shanghai'
     
-    - name: Setup .NET Core
+    - name: 安装 .NET 核心
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100
 
+    - name:  ${{ env.CACHE_NAME }}
+    #- name: 缓存 .NET 模块
     - uses: actions/cache@v2
+      env:
+        CACHE_NAME: 缓存 .NET 模块
       with:
         path: ~/.nuget/packages
         # Look to see if there is a cache hit for the corresponding requirements file
@@ -34,13 +39,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-nuget
 
-    - name: Install dependencies
+    - name: 安装 依赖包
       run: dotnet restore
       
-    - name: Build
+    - name: 构建 原神签到
       run: dotnet build --configuration Release --no-restore
       
-    - name: Run
+    - name: 运行 原神签到
       env:
         Cookie: ${{secrets.Cookie}}
         PushPlusToken: ${{secrets.PushPlusToken}}
